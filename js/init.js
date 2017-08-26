@@ -133,11 +133,8 @@
       randomize: false,
    });
 
-/*----------------------------------------------------*/
-/*	contact form
-------------------------------------------------------*/
-
-   $('form#contactForm button.submit').click(function() {
+/*----------------------------------------------------
+$('form#contactForm button.submit').click(function() {
 
       $('#image-loader').fadeIn();
 
@@ -150,11 +147,10 @@
                '&contactSubject=' + contactSubject + '&contactMessage=' + contactMessage;
 
       $.ajax({
-
-	      type: "POST",
-	      url: "inc/sendEmail.php",
-	      data: data,
-	      success: function(msg) {
+        type: "POST",
+        // url: "inc/sendEmail.php",
+        data: data,
+        success: function(msg) {
 
             // Message was sent
             if (msg == 'OK') {
@@ -167,14 +163,19 @@
             else {
                $('#image-loader').fadeOut();
                $('#message-warning').html(msg);
-	            $('#message-warning').fadeIn();
+              $('#message-warning').fadeIn();
             }
 
-	      }
+        }
 
       });
       return false;
    });
+
+/*	contact form
+------------------------------------------------------*/
+
+   
 
 
 });

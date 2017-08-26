@@ -30,6 +30,29 @@
 	================================================== -->
 	<link rel="shortcut icon" href="Tee.png" >
 
+   <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+   <script type="text/javascript">
+      (function(){
+         emailjs.init("user_5UatMMw5STyCESbxcNf8Q");
+      })();
+   </script>
+   <script type="text/javascript">
+      function sendMail(){
+         var name= document.getElementById("contactName").value;
+         var email= document.getElementById("contactEmail").value;
+         var subject= document.getElementById("contactSubject").value;
+         var message= document.getElementById("contactMessage").value;
+         var nameMixed= name + "("+ email+")";
+        emailjs.send("gmail","template_PbfUfhx5",{from_name: nameMixed, message_html: message, to_name: subject })
+        // .then(function(response) {
+        //  console.log("SUCCESS. status=%d, text=%s", response.status, response.text);
+        //  }, function(err) {
+        //     console.log("FAILED. error=", err);
+        //  });
+         }
+
+   </script>
+
 </head>
 
 <body>
@@ -528,7 +551,7 @@
             <div class="eight columns">
 
                <!-- form -->
-               <form action="" method="post" id="contactForm" name="contactForm">
+               <form onsubmit="sendMail" id="contactForm" name="contactForm">
 					<fieldset>
 
                   <div>
@@ -538,7 +561,7 @@
 
                   <div>
 						   <label for="contactEmail">Email <span class="required">*</span></label>
-						   <input type="text" value="" size="35" id="contactEmail" name="contactEmail">
+						   <input type="email" value="" size="35" id="contactEmail" name="contactEmail">
                   </div>
 
                   <div>
@@ -552,7 +575,7 @@
                   </div>
 
                   <div>
-                     <button class="submit">Submit</button>
+                     <button onclick="sendMail()" class="submit">Submit</button>
                      <span id="image-loader">
                         <img alt="" src="images/loader.gif">
                      </span>
