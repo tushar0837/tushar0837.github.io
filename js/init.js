@@ -133,7 +133,7 @@
       randomize: false,
    });
 
-/*----------------------------------------------------
+/*---------------------------------------------------- */
 $('form#contactForm button.submit').click(function() {
 
       $('#image-loader').fadeIn();
@@ -146,29 +146,37 @@ $('form#contactForm button.submit').click(function() {
       var data = 'contactName=' + contactName + '&contactEmail=' + contactEmail +
                '&contactSubject=' + contactSubject + '&contactMessage=' + contactMessage;
 
-      $.ajax({
-        type: "POST",
-        // url: "inc/sendEmail.php",
-        data: data,
-        success: function(msg) {
+      var nameMixed= contactName + "("+ contactEmail+")";
 
-            // Message was sent
-            if (msg == 'OK') {
-               $('#image-loader').fadeOut();
-               $('#message-warning').hide();
-               $('#contactForm').fadeOut();
-               $('#message-success').fadeIn();   
-            }
-            // There was an error
-            else {
-               $('#image-loader').fadeOut();
-               $('#message-warning').html(msg);
-              $('#message-warning').fadeIn();
-            }
+      // Check Name
+      if (length.contactName < 2) {
+        alert("Please enter your name.");
+      }
+      // Check Email
+      else if (!(/^\w+([\.-]?\ w+)*@\w+([\.-]?\ w+)*(\.\w{2,3})+$/.test(contactEmail))) {
+        alert("Please enter a valid email address.");
+      }
+      // Check Message
+      else if (contactMessage.length < 15) {
+        alert("Please enter your message. It should have at least 15 characters.");
+      }
 
+      else {
+        emailjs.send("gmail","template_PbfUfhx5",{from_name: nameMixed, message_html: contactMessage, to_name: contactSubject })
+              .then(function(response) {
+                console.log("SUCCESS. status=%d, text=%s", response.status, response.text);
+                $('#image-loader').fadeOut();
+                $('#message-warning').hide();
+                $('#contactForm').fadeOut();
+                $('#message-success').fadeIn();
+              }, function(err) {
+                console.log("FAILED. error=", err);
+                $('#image-loader').fadeOut();
+                $('#message-warning').html(err);
+                $('#message-warning').fadeIn();
+
+              });
         }
-
-      });
       return false;
    });
 
