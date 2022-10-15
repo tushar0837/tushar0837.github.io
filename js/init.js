@@ -150,19 +150,22 @@ $('form#contactForm button.submit').click(function() {
 
       // Check Name
       if (length.contactName < 2) {
+         $('#image-loader').fadeOut();
         alert("Please enter your name.");
       }
       // Check Email
       else if (!(/^\w+([\.-]?\ w+)*@\w+([\.-]?\ w+)*(\.\w{2,3})+$/.test(contactEmail))) {
+         $('#image-loader').fadeOut();
         alert("Please enter a valid email address.");
       }
       // Check Message
       else if (contactMessage.length < 15) {
+         $('#image-loader').fadeOut();
         alert("Please enter your message. It should have at least 15 characters.");
       }
 
       else {
-        emailjs.send("gmail","template_PbfUfhx5",{from_name: nameMixed, message_html: contactMessage, to_name: contactSubject })
+        emailjs.send("service_krqz52m","template_PbfUfhx5",{from_name: nameMixed, message_html: contactMessage, to_name: contactSubject })
               .then(function(response) {
                 console.log("SUCCESS. status=%d, text=%s", response.status, response.text);
                 $('#image-loader').fadeOut();

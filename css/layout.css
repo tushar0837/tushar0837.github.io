@@ -33,7 +33,7 @@ header {
    height: 800px;
    min-height: 500px;
    width: 100%;
-   background: #161415 url(../images/header-background.jpg) no-repeat top center;
+   background: linear-gradient(0deg, rgb(0 0 0 / 77%), #00000096), url(../images/tushar.jpg) no-repeat top center;
    background-size: cover !important;
 	-webkit-background-size: cover !important;
    text-align: center;
@@ -325,25 +325,24 @@ ul#nav li.current a { color: #F06000; }
    border-radius: 3px 0 0 3px;
 }
 
+.scale-with-grid {
+   width: 100%
+}
+
 .reactNative {
-  	width: 80%;
+  	width: 50%;
   	-moz-animation: reactNative 2s ease;
   	-webkit-animation: reactNative 2s ease;
 }
 .reactJs {
-  	width: 75%;
+  	width: 90%;
   	-moz-animation: reactJs 2s ease;
   	-webkit-animation: reactJs 2s ease;
 }
-.VBA {
-  	width: 85%;
-  	-moz-animation: VBA 2s ease;
-  	-webkit-animation: VBA 2s ease;
-}
-.css {
-  	width: 90%;
-  	-moz-animation: css 2s ease;
-  	-webkit-animation: css 2s ease;
+.ror {
+   width: 85%;
+  	-moz-animation: python 2s ease;
+  	-webkit-animation: python 2s ease;
 }
 .python {
   	width: 70%;
@@ -355,12 +354,6 @@ ul#nav li.current a { color: #F06000; }
   	-moz-animation: sql 2s ease;
   	-webkit-animation: sql 2s ease;
 }
-.java {
-    width: 70%;
-    -moz-animation: java 2s ease;
-    -webkit-animation: java 2s ease;
-}
-
 @-moz-keyframes reactNative {
   0%   { width: 0px;  }
   100% { width: 80%;  }
